@@ -13,6 +13,6 @@ router.get('/restaurants', ctrlRestaurants.listAll);
 router.get('/restaurants/:restaurantid', ctrlRestaurants.listById);
 router.post('/restaurants/', ctrlRestaurants.createRestaurant);
 router.delete('/restaurants/:restaurantid', ctrlRestaurants.deleteRestaurant);
-
+router.post('/restaurants/:restaurantid', ctrlRestaurants.updateRestaurant);
 
 module.exports = router;

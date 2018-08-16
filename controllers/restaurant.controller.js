@@ -68,6 +68,29 @@ module.exports.deleteRestaurant = function deleteRestaurant (req, res) {
 		res.json({ message: 'No restaurant id'});
 	}
 };
+module.exports.updateRestaurant = function updateRestaurant (req, res) {
+	var restaurantid = req.params.restaurantid;
+	var updateRestaurat = {
+		name : req.body.name,
+		phone : req.body.phone,
+		email: req.body.email
+	}
+	if (restaurantid) {
+		Restaurant.findByIdAndUpdate(restaurantid, {$set : updateRestaurat}).exec(function (err, restaurantUpdated) {
+			if (err) {
+				res.status(404);
+				res.send(err);
+				return;
+			}
+			res.status(202);
+			res.json(restaurantUpdated);
+	
+		});
+	} else {
+		res.status(404);
+		res.json({ message: 'No restaurant id'});
+	}
+};
 
 
 

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
-  "author": "ESteban Montes",
+  "author": "Esteban Montes",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
