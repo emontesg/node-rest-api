@@ -1,8 +1,7 @@
 /*
  * Restaurant Model
  */
-
-var mongoose	= require('mongoose');
+var mongoose = require('mongoose');
 
 var restaurantSchema = mongoose.Schema({
 	name: { type: String, required: true },

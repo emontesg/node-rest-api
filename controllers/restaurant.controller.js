@@ -5,14 +5,14 @@ require('../models/restaurants.js');
 var mongoose = require('mongoose'),
 	Restaurant = mongoose.model('Restaurant');
 
-module.exports.listAll = function listAll (req, res) {
+module.exports.listAll = (req, res) => {
 	Restaurant.find().exec(function (err, data) {
 		res.status(200);
 		res.json(data);
 	});
 };
 
-module.exports.listById = function listById (req, res) {
+module.exports.listById =  (req, res) => {
 	if (req.params && req.params.restaurantid) {
 		Restaurant.findById(req.params.restaurantid).exec(function (err, restaurant) {
 			if (!restaurant) {
@@ -33,7 +33,7 @@ module.exports.listById = function listById (req, res) {
 	}
 };
 
-module.exports.createRestaurant = function createRestaurant (req, res) {
+module.exports.createRestaurant = (req, res) => {
 	var restaurant = new Restaurant();
 
 	restaurant.name = req.body.name;
@@ -51,7 +51,7 @@ module.exports.createRestaurant = function createRestaurant (req, res) {
 	});
 };
 
-module.exports.deleteRestaurant = function deleteRestaurant (req, res) {
+module.exports.deleteRestaurant = (req, res) => {
 	var restaurantid = req.params.restaurantid;
 	if (restaurantid) {
 		Restaurant.findByIdAndRemove(restaurantid).exec(function (err, restaurant) {
@@ -68,15 +68,15 @@ module.exports.deleteRestaurant = function deleteRestaurant (req, res) {
 		res.json({ message: 'No restaurant id'});
 	}
 };
-module.exports.updateRestaurant = function updateRestaurant (req, res) {
+module.exports.updateRestaurant = (req, res) => {
 	var restaurantid = req.params.restaurantid;
-	var updateRestaurat = {
+	var updateRestaurant = {
 		name : req.body.name,
 		phone : req.body.phone,
 		email: req.body.email
 	}
 	if (restaurantid) {
-		Restaurant.findByIdAndUpdate(restaurantid, {$set : updateRestaurat}).exec(function (err, restaurantUpdated) {
+		Restaurant.findByIdAndUpdate(restaurantid, {$set : updateRestaurant}).exec(function (err, restaurantUpdated) {
 			if (err) {
 				res.status(404);
 				res.send(err);
